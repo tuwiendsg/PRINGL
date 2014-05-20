@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<incentiveStrategy xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" dslVersion="1.0.0.0" Id="594b10a6-7cfb-496a-8f1a-dbbd3478aaf5" xmlns="http://schemas.microsoft.com/dsltools/PRINGL">
+  <incentiveElements>
+    <incentiveStrategyHasIncentiveElements Id="73f6be66-a829-4eda-b378-56cdd767c0cf">
+      <compositeFilter Id="1c11eb1b-1b9c-4e86-a942-1117903d8dca" name="VelikiFilter">
+        <innerFilterInstances>
+          <containerHasInnerFilterInstances Id="173700e1-0796-472c-9082-f59335c9f382">
+            <innerFilterInstance Id="75d4d781-7cbe-4945-adf5-1cefa75092e0" name="MaliFilter1" type="DrugiTip" />
+          </containerHasInnerFilterInstances>
+          <containerHasInnerFilterInstances Id="d3a8d4c0-e446-41c8-a093-5389a58306d7">
+            <innerFilterInstance Id="70d747bd-465f-4c89-ab97-5268fecf1928" name="MaliFilter2" type="MT" />
+          </containerHasInnerFilterInstances>
+        </innerFilterInstances>
+      </compositeFilter>
+    </incentiveStrategyHasIncentiveElements>
+    <incentiveStrategyHasIncentiveElements Id="f2f964e0-32bb-42ff-9806-bbda99850260">
+      <compositeFilter Id="584ff581-7a92-4309-a118-d09015482797" name="DrugiCompozitniFilter" />
+    </incentiveStrategyHasIncentiveElements>
+    <incentiveStrategyHasIncentiveElements Id="b3747d48-5e8e-4d74-9416-cb20596cd716">
+      <compositeAction Id="2eb883db-0773-425d-ab34-74b8c4ca03c0" name="CompositeAction1" />
+    </incentiveStrategyHasIncentiveElements>
+    <incentiveStrategyHasIncentiveElements Id="bb587c65-3042-4ddb-a352-737bca3a0cc8">
+      <incMech Id="b87c68c1-9362-46b3-9ae3-6ade8152ec6f" name="IncMech1">
+        <pRINGLParameter>
+          <elementHasParameters Id="3511b7da-ce38-4852-a559-d4a3292fdc3c">
+            <pRINGLParameter Id="8b84d48a-89f1-4be6-9323-2441e5457023" propagation="" />
+          </elementHasParameters>
+        </pRINGLParameter>
+      </incMech>
+    </incentiveStrategyHasIncentiveElements>
+    <incentiveStrategyHasIncentiveElements Id="557e9c55-e40b-4f93-a46b-e1296c4cfd1d">
+      <incMechInstance Id="5fcf0f5b-693a-404f-ba03-cbb07c902ad7" name="i1" priority="0" type="NekiTip" />
+    </incentiveStrategyHasIncentiveElements>
+  </incentiveElements>
+</incentiveStrategy>

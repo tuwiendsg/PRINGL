@@ -1,0 +1,15 @@
+﻿[$RootKey$\Generators]
+[$RootKey$\Generators\{FAE04EC1-301F-11d3-BF4B-00C04F79EFBC}]
+[$RootKey$\Generators\{FAE04EC1-301F-11d3-BF4B-00C04F79EFBC}\PringlFileCodeGenerator]
+@="Custom tool that generates C# files for PRINGL models described in .pringl files"
+"CLSID"="{1EE2F58E-CE41-41AA-ABC3-9AC51959B434}"
+"GeneratesDesignTimeSource"=dword:00000001
+[$RootKey$\CLSID]
+[$RootKey$\CLSID\{1EE2F58E-CE41-41AA-ABC3-9AC51959B434}]
+@="Custom tool that generates C# files for PRINGL models described in .pringl files "
+"Class"="at.ac.tuwien.dsg.PRINGL.CodeGenerator"
+"InprocServer32"="$WinDir$\SYSTEM32\MSCOREE.DLL"
+"ThreadingModel"="Both"
+"CodeBase"="$PackageFolder$\at.ac.tuwien.dsg.PRINGL.DslPackage.dll"
+[$RootKey$\Generators\{FAE04EC1-301F-11d3-BF4B-00C04F79EFBC}\.pringl]
+@="PringlFileCodeGenerator"

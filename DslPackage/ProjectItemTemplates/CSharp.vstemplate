@@ -1,0 +1,17 @@
+﻿<!--DSL Tools Language Template-->
+<VSTemplate Version="3.0.0" Type="Item" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<TemplateData>
+		<TemplateID>{950960a0-a63c-4b6b-b8b4-1f773c5e2f14}</TemplateID>
+		<Name Package="{ef6d6057-81a7-47e5-8884-1f6659772c0e}" ID="103"/>
+		<Description Package="{ef6d6057-81a7-47e5-8884-1f6659772c0e}" ID="102"/>
+		<Icon Package="{ef6d6057-81a7-47e5-8884-1f6659772c0e}" ID="201" />
+		<ProjectType>CSharp</ProjectType>
+		<SortOrder>360</SortOrder>
+		<DefaultName>PRINGL.pringl</DefaultName>
+	</TemplateData>
+	<TemplateContent>
+		<ProjectItem TargetFileName="$fileinputname$.pringl">pringl.pringl</ProjectItem>
+		<ProjectItem TargetFileName="$fileinputname$.pringl.diagram">pringl.diagram</ProjectItem>
+	</TemplateContent>
+</VSTemplate>
+

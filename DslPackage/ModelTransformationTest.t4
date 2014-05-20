@@ -1,0 +1,854 @@
+﻿<#@ template inherits="Microsoft.VisualStudio.TextTemplating.VSHost.ModelingTextTransformation" #>
+<#@ PRINGL processor="PRINGLDirectiveProcessor" requires="fileName='C:\Users\Ogi\Dropbox\PRINGL\PRINGL-VMSDK\Debugging\Rotatingpresidency.pringl'" #>
+<#@ output extension=".pringl.cs.txt" #>
+<#@ Assembly Name="System.Core.dll" #>
+<#@ import namespace="System" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Diagnostics" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Collections" #>
+<#@ import namespace="System.Collections.Generic" #> 
+<#@ import namespace="System.Runtime.CompilerServices"#>
+<#@ import namespace="at.ac.tuwien.dsg.PRINGL" #> 
+
+/*DUMMY TYPES TO check design-time compile errors*/
+public class Worker
+{
+
+}
+
+
+
+namespace at.ac.tuwien.dsg.PRINGL.<#= this.IncentiveStrategy /*TODO Add in the metamodel strategy name as param to IncentiveStrategy domain element*/ #>{
+<# PushIndent("    "); #>
+
+#region IncentiveLogic
+<# 
+	var listOfLogic = getIncentiveLogics();
+
+	if (listOfLogic.Count() > 0)
+    {
+		PushIndent("    "); 
+		WriteLine("public static partial class IncLogic");
+		WriteLine("{");
+		
+		PushIndent("    ");
+
+		//environment-set fields
+		WriteLine("public static Worker _w; //set externally to the currently evaluated Worker");
+		WriteLine("public static IEnumerable<Worker> _ws; //set externally to the list of all workers that the system manages");
+		WriteLine("public static Timeline _timeline; //set externally to the instance managing iterations and PoiTs");
+
+		WriteLine("");
+		
+		foreach (var l in listOfLogic)
+		{
+	
+			PRINGLSubMetatype logictype = l.SubMetatype;
+			
+			string pars = "";
+			
+
+			switch (logictype)
+			{
+				case PRINGLSubMetatype.PredicateLogic:
+				{
+					#region PLogicCode
+					WriteLine("[P_Logic]");
+					Write("public static bool " + l.Name + "(");
+					
+					
+					pars = "";
+					if (l.PRINGLParameter.Count > 0)
+                    {
+						foreach (var p in l.PRINGLParameter)
+						{
+							pars += p.Type + " " + p.Name + ",";
+						}
+						pars = pars.TrimEnd(charsToTrim);
+                    }
+					Write(pars);
+					pars = "";
+					WriteLine(")"); //closing the input parameters list of the method
+
+					WriteLine("{"); //begin method body
+					PushIndent("    ");
+
+					CheckAndOutputIncentiveLogicUserCode(l.Code); //check and output user's code
+
+					PopIndent();
+					WriteLine("}"); //end method body
+					#endregion 
+					break;
+				}
+				case PRINGLSubMetatype.FilterLogic:
+				{
+					#region FLogicCode
+					WriteLine("[F_Logic]");
+					Write("public static " + l.OutputType + " " + l.Name + "(");
+					
+					
+					pars = "";
+					if (l.PRINGLParameter.Count > 0)
+                    {
+						foreach (var p in l.PRINGLParameter)
+						{
+							pars += p.Type + " " + p.Name + ",";
+						}
+						pars = pars.TrimEnd(charsToTrim);
+                    }
+					Write(pars);
+					pars = "";
+					WriteLine(")"); //closing the input parameters list of the method
+
+					WriteLine("{"); //begin method body
+					PushIndent("    ");
+
+					CheckAndOutputIncentiveLogicUserCode(l.Code); //check and output user's code
+
+					PopIndent();
+					WriteLine("}"); //end method body
+					#endregion
+					break;
+				}
+				case PRINGLSubMetatype.ActionLogic:
+				{
+					#region ALogicCode
+					WriteLine("[A_Logic]");
+					Write("public static " + COLLECTION_NAME + "<Worker>" + " " + l.Name + "(");
+					
+					
+					pars = "";
+					if (l.PRINGLParameter.Count > 0)
+                    {
+						foreach (var p in l.PRINGLParameter)
+						{
+							pars += p.Type + " " + p.Name + ",";
+						}
+						pars = pars.TrimEnd(charsToTrim);
+                    }
+					Write(pars);
+					pars = "";
+					WriteLine(")"); //closing the input parameters list of the method
+
+					WriteLine("{"); //begin method body
+					PushIndent("    ");
+
+					CheckAndOutputIncentiveLogicUserCode(l.Code); //check and output user's code
+
+					PopIndent();
+					WriteLine("}"); //end method body
+					#endregion
+					break;
+				}
+				case PRINGLSubMetatype.StructureLogic:
+				{
+					#region SLogicCode
+					WriteLine("[S_Logic]");
+					Write("public static " + COLLECTION_NAME + "<Worker>" + " " + l.Name + "(");
+					
+					
+					pars = "";
+					if (l.PRINGLParameter.Count > 0)
+                    {
+						foreach (var p in l.PRINGLParameter)
+						{
+							pars += p.Type + " " + p.Name + ",";
+						}
+						pars = pars.TrimEnd(charsToTrim);
+                    }
+					Write(pars);
+					pars = "";
+					WriteLine(")"); //closing the input parameters list of the method
+
+					WriteLine("{"); //begin method body
+					PushIndent("    ");
+
+					CheckAndOutputIncentiveLogicUserCode(l.Code); //check and output user's code
+
+					PopIndent();
+					WriteLine("}"); //end method body
+					#endregion
+					break;
+				}
+				case PRINGLSubMetatype.TimeLogic:
+				{
+					#region TLogicCode
+					WriteLine("[T_Logic]");
+					Write("public static " + COLLECTION_NAME + "<PoiT>" + " " + l.Name + "(");
+					
+					
+					pars = "";
+					if (l.PRINGLParameter.Count > 0)
+                    {
+						foreach (var p in l.PRINGLParameter)
+						{
+							pars += p.Type + " " + p.Name + ",";
+						}
+						pars = pars.TrimEnd(charsToTrim);
+                    }
+					Write(pars);
+					pars = "";
+					WriteLine(")"); //closing the input parameters list of the method
+
+					WriteLine("{"); //begin method body
+					PushIndent("    ");
+
+					CheckAndOutputIncentiveLogicUserCode(l.Code); //check and output user's code
+
+					PopIndent();
+					WriteLine("}"); //end method body
+					#endregion
+					break;
+				}
+			}
+
+			WriteLine("");
+
+		}//end foreach
+
+
+		PopIndent();
+		WriteLine("}"); //close class IncLogic
+		PopIndent();
+    }//end if count >0
+
+ #>
+#endregion IncentiveLogic
+
+
+#region Filters
+
+public abstract class Filter {
+	public HashSet<Worker> inputWorkers  = new HashSet<Worker>();
+
+	public HashSet<Filter> incoming = new HashSet<Filter>();
+	public HashSet<Filter> outgoing = new HashSet<Filter>();
+
+	//public delegate IEnumerate<PoiT> timeRestriction
+	//public delegate COLLECTION_NAME <PoiT> + " " + l.Name + "(");
+
+	public Filter(HashSet<Worker> inputWorkers)
+	{
+		this.inputWorkers = inputWorkers;
+	}
+
+	public Filter(){}
+
+	protected HashSet<Worker> inputUnionOfWorkers()
+    {
+		HashSet<Worker> allInputWorkers = new HashSet<Worker>(inputWorkers); //add my workers (needed for the first filter in a composite one
+
+		foreach (var inputFilter in this.incoming)
+        {
+			allInputWorkers.UnionWith(inputFilter.output());
+        }
+
+		return allInputWorkers;
+    }
+
+	abstract public HashSet<Worker> output();
+
+} //end base class Filter
+
+public class Passthru : Filter
+{
+
+	public override HashSet<Worker> output()
+	{
+		return inputUnionOfWorkers();
+
+	}
+
+}
+
+<#
+
+	HashSet<Worker> allInputs = new HashSet<Worker>();
+
+	var listOfSimpleFilters = getSimpleFilters();
+
+	if (listOfSimpleFilters.Count() > 0)
+    {
+		foreach (var sf in listOfSimpleFilters)
+		{
+		PushIndent("    "); 
+			WriteLine("public partial class " + sf.Name + " : Filter");
+			WriteLine("{");
+				PushIndent("    ");
+				
+				//constructor
+				WriteLine("public " + sf.Name + "(HashSet<Worker> inputWorkers)");
+				WriteLine("{");
+					PushIndent("    ");
+
+			
+					PopIndent();
+				WriteLine("}"); //close constructor body
+
+			PopIndent();
+			WriteLine("}"); //close class sf.Name
+		PopIndent();
+        }//end foreach sh
+
+    }//end if count of filters >0
+
+#>
+#endregion Filters
+////////////////////////////////
+
+#region Actions
+
+#endregion Actions
+
+#region CompositeFilters
+
+#endregion CompositeFilters
+
+#region CompositeActions
+
+#endregion CompositeActions
+
+#region IncentiveMechanisms
+
+#endregion IncentiveMechanisms
+
+
+
+
+#region ReferencedInstances
+
+
+public abstract class TLogicInstance {
+	
+	public abstract IEnumerable<PoiT> invoke();
+}
+
+public abstract class SLogicInstance {
+	
+	public abstract IEnumerable<Worker> invoke();
+}
+
+public abstract class PLogicInstance {
+	
+	public abstract bool invoke();
+}
+
+public abstract class ALogicInstance {
+	
+	public abstract IEnumerable<Worker> invoke();
+}
+
+public abstract class FLogicInstance {
+	
+	public abstract object invoke();
+}
+
+
+<# 
+	
+	//Referenced IncentiveLogic 
+	HashSet<PRINGLInstance> referencedTLogicInstances = getReferencedInstances(PRINGLMetatype.Logic, PRINGLSubMetatype.TimeLogic);
+	HashSet<PRINGLInstance> referencedALogicInstances = getReferencedInstances(PRINGLMetatype.Logic, PRINGLSubMetatype.ActionLogic);
+	HashSet<PRINGLInstance> referencedSLogicInstances = getReferencedInstances(PRINGLMetatype.Logic, PRINGLSubMetatype.StructureLogic);
+	HashSet<PRINGLInstance> referencedPLogicInstances = getReferencedInstances(PRINGLMetatype.Logic, PRINGLSubMetatype.PredicateLogic);
+	HashSet<PRINGLInstance> referencedFLogicInstances = getReferencedInstances(PRINGLMetatype.Logic, PRINGLSubMetatype.FilterLogic);
+
+	WriteLine("");
+
+	foreach (var T in referencedTLogicInstances)
+    {
+		WriteLine("");
+		//WriteLine("[T_LogicInstance]"); //mozda ce nam anotacije eventualno trebati da podrobnije opisemo u/i parametre kod onih podtippova za koje nisu predefinisani. Vidi kasnije.
+		WriteLine("class " + T.Name + "_Inst : TLogicInstance");
+		WriteLine("{");
+		PushIndent("    ");
+			WriteLine("");	
+			//fields
+			foreach (var field in getParametersFromMatchingDefinition(T))
+            {
+				WriteLine("public " + field.Type + " " + field.Name + ";");
+            }
+
+			WriteLine("");
+			WriteLine("override public " + COLLECTION_NAME + "<PoiT> invoke()");
+			WriteLine("{");
+			PushIndent("    ");
+				Write("return IncLogic." + T.Name + "(");
+					
+					string pars = "";
+					foreach (var par in getParametersFromMatchingDefinition(T)) //this will work as long as foreach will consistently iterate in the same sequence it iterated when generating the method whose invocation we generate here. It will do for the proof-of concept impl.
+                    {
+						pars += par.Name + ",";
+                    }
+					pars = pars.TrimEnd(charsToTrim);
+					Write(pars);
+				WriteLine(");"); 
+			PopIndent();
+			WriteLine("}");
+
+		PopIndent();
+		WriteLine("}");//end class
+    }
+
+	foreach (var S in referencedSLogicInstances)
+    {
+		WriteLine("");
+		//WriteLine("[S_LogicInstance]");
+		WriteLine("class " + S.Name + "_Inst : SLogicInstance");
+		WriteLine("{");
+		PushIndent("    ");
+			WriteLine("");	
+			//fields
+			foreach (var field in getParametersFromMatchingDefinition(S))
+            {
+				WriteLine("public " + field.Type + " " + field.Name + ";");
+            }
+
+			WriteLine("");
+			WriteLine("override public " + COLLECTION_NAME + "<Worker> invoke()");
+			WriteLine("{");
+			PushIndent("    ");
+				Write("return IncLogic." + S.Name + "(");
+					
+					string pars = "";
+					foreach (var par in getParametersFromMatchingDefinition(S)) //this will work as long as foreach will consistently iterate in the same sequence it iterated when generating the method whose invocation we generate here. It will do for the proof-of concept impl.
+                    {
+						pars += par.Name + ",";
+                    }
+					pars = pars.TrimEnd(charsToTrim);
+					Write(pars);
+				WriteLine(");"); 
+			PopIndent();
+			WriteLine("}");
+
+		PopIndent();
+		WriteLine("}");//end class
+    }
+
+	foreach (var P in referencedPLogicInstances)
+    {
+		WriteLine("");
+		//WriteLine("[P_LogicInstance]");
+		WriteLine("class " + P.Name + "_Inst : PLogicInstance");
+		WriteLine("{");
+		PushIndent("    ");
+			WriteLine("");	
+			//fields
+			foreach (var field in getParametersFromMatchingDefinition(P))
+            {
+				WriteLine("public " + field.Type + " " + field.Name + ";");
+            }
+
+			WriteLine("");
+			WriteLine("override public bool invoke()");
+			WriteLine("{");
+			PushIndent("    ");
+				Write("return IncLogic." + P.Name + "(");
+					
+					string pars = "";
+					foreach (var par in getParametersFromMatchingDefinition(P)) //this will work as long as foreach will consistently iterate in the same sequence it iterated when generating the method whose invocation we generate here. It will do for the proof-of concept impl.
+                    {
+						pars += par.Name + ",";
+                    }
+					pars = pars.TrimEnd(charsToTrim);
+					Write(pars);
+				WriteLine(");"); 
+			PopIndent();
+			WriteLine("}");
+
+		PopIndent();
+		WriteLine("}");//end class
+    }
+
+	foreach (var A in referencedALogicInstances)
+    {
+		WriteLine("");
+		//WriteLine("[A_LogicInstance]");
+		WriteLine("class " + A.Name + "_Inst : ALogicInstance");
+		WriteLine("{");
+		PushIndent("    ");
+			WriteLine("");	
+			//fields
+			foreach (var field in getParametersFromMatchingDefinition(A))
+            {
+				WriteLine("public " + field.Type + " " + field.Name + ";");
+            }
+
+			WriteLine("");
+			WriteLine("override public " + COLLECTION_NAME + "<Worker> invoke()");
+			WriteLine("{");
+			PushIndent("    ");
+				Write("return IncLogic." + A.Name + "(");
+					
+					string pars = "";
+					foreach (var par in getParametersFromMatchingDefinition(A)) //this will work as long as foreach will consistently iterate in the same sequence it iterated when generating the method whose invocation we generate here. It will do for the proof-of concept impl.
+                    {
+						pars += par.Name + ",";
+                    }
+					pars = pars.TrimEnd(charsToTrim);
+					Write(pars);
+				WriteLine(");"); 
+			PopIndent();
+			WriteLine("}");
+
+		PopIndent();
+		WriteLine("}");//end class
+    }
+
+	foreach (var F in referencedFLogicInstances)
+    {
+		WriteLine("");
+		//WriteLine("[F_LogicInstance]");
+		WriteLine("class " + F.Name + "_Inst : FLogicInstance");
+		WriteLine("{");
+		PushIndent("    ");
+			WriteLine("");	
+			//fields
+			foreach (var field in getParametersFromMatchingDefinition(F))
+            {
+				WriteLine("public " + field.Type + " " + field.Name + ";");
+            }
+
+			WriteLine("");
+			WriteLine("override public object invoke()");
+			WriteLine("{");
+			PushIndent("    ");
+				
+				string invocation = "IncLogic." + F.Name + "(";
+					
+				string pars = "";
+				foreach (var par in getParametersFromMatchingDefinition(F)) //this will work as long as foreach will consistently iterate in the same sequence it iterated when generating the method whose invocation we generate here. It will do for the proof-of concept impl.
+                {
+					pars += par.Name + ",";
+                }
+				pars = pars.TrimEnd(charsToTrim);
+				invocation += pars + ");";
+
+				IncLogic definition = (IncLogic) getMatchingPRINGLTypeDefinitionForInstance(F);
+				if (definition.OutputType.Equals("void"))
+                {
+					WriteLine(invocation);
+					WriteLine("return null;");	
+                }
+				else
+                {
+					WriteLine("return " + invocation);
+                }
+				
+				 
+			PopIndent();
+			WriteLine("}");
+
+		PopIndent();
+		WriteLine("}");//end class
+    }
+
+	//Referenced Filters
+	HashSet<PRINGLInstance> referencedFilterInstances = getReferencedInstances(PRINGLMetatype.Filter, PRINGLSubMetatype.None);
+
+	WriteLine("");
+
+	//Reference Actions
+	//TODO 
+
+ #>
+#endregion ReferencedInstances
+
+<# PopIndent(); #>
+} //end namespace
+
+
+
+<# 	
+	//Top-level documents belonging to the root are:
+	//foreach (IncentiveElement element in this.IncentiveStrategy.IncentiveElements)
+    //{
+	//	WriteLine("////" + element.Name);
+    //} 
+#>
+
+
+
+ 
+<#+ 
+#region IncLogicUtils
+  
+ IEnumerable<IncLogic> getIncentiveLogics() 
+ {
+	  return 	from    e in this.IncentiveStrategy.IncentiveElements
+				where	e.GetType() == typeof(IncLogic)
+				select  (IncLogic) e;
+ }
+ 
+  
+ 
+ //replace the generic keyword 'Collection' the user uses with the implementation-specific
+ [MethodImpl(MethodImplOptions.AggressiveInlining)]
+ string replColl(string input) 
+ { 
+	 return input.Replace("Collection", COLLECTION_NAME);
+
+ }
+
+ public void CheckAndOutputIncentiveLogicUserCode(string original)
+ {
+	 
+	 //todo: perform additional checks and replacements
+	 
+	 WriteLine(replColl(original)); 
+
+
+ }
+#endregion //IncLogicUtils
+#>
+
+<#+ 
+ #region ReferencedInstanceUtils
+
+ HashSet<PRINGLInstance> getReferencedInstances(PRINGLMetatype mtt, PRINGLSubMetatype sbmtt) 
+ {
+	 
+	 
+	 var referencedInstances = new HashSet<PRINGLInstance>();
+
+	 var topLevelDefinitions = new HashSet<SimpleDefinition>();
+	 
+	 foreach (var sf in getSimpleFilters())
+     {
+		topLevelDefinitions.Add(sf);
+     }
+	 
+	 foreach (var sa in getSimpleActions())
+     {
+		topLevelDefinitions.Add(sa);
+     }
+
+	 foreach (var im in getIncentiveMechanisms())
+     {
+		topLevelDefinitions.Add(im);
+     }
+	 
+	 
+
+	 foreach (SimpleDefinition def in topLevelDefinitions)
+     {
+		foreach (PRINGLInstance inst in def.PRINGLInstance)
+        {
+			if  (	(mtt != PRINGLMetatype.Logic && inst.Metatype == mtt)
+					||
+					(inst.Metatype == mtt && inst.SubMetatype == sbmtt)
+				)
+            {
+				var alreadyExistsOneWithSameName = (from x in referencedInstances
+												   where x.Name == inst.Name
+												   select x).Count() > 0;
+				if (!alreadyExistsOneWithSameName)
+                {
+					referencedInstances.Add(inst);
+                }
+            }
+        }
+     }//end outer foreach
+
+	 
+
+	return referencedInstances;
+ } // end method getReferencedInstances()
+
+
+ LinkedElementCollection<PRINGLParameter> getParametersFromMatchingDefinition(PRINGLInstance inst)
+ {
+	 IncentiveElement definition = getMatchingPRINGLTypeDefinitionForInstance(inst);
+	 return definition.PRINGLParameter;
+ }
+
+ IncentiveElement getMatchingPRINGLTypeDefinitionForInstance(PRINGLInstance inst)
+ {
+	 switch (inst.Metatype)
+     {
+		 case PRINGLMetatype.Action:
+         {
+			 //TODO - We must consider also composite actions here, because instances can be of them as well
+
+			 var y = (from x in getSimpleActions() //from definitions of simple actions
+					 where x.Name == inst.Name     //find the one that matches its instance by name
+					 select x).FirstOrDefault();
+			 return y;
+         }
+		 case PRINGLMetatype.Filter:
+         {
+			 
+			 //TODO - We must consider also composite filters here, because instances can be of them as well
+			 
+			 var y = (from x in getSimpleFilters() //from definitions of simple filters
+					 where x.Name == inst.Name     //find the one that matches its instance by name
+					 select x).FirstOrDefault();
+			 return y;
+         }
+		 case PRINGLMetatype.Logic:
+         {
+			 var y = (from x in getIncentiveLogics() //from definitions of inc logic
+					 where x.Name == inst.Name  &&   //find the one that matches its instance by name
+				           x.SubMetatype == inst.SubMetatype //and subtype
+					 select x).FirstOrDefault();
+			 return y;
+         }
+
+
+
+     }//end switch
+	 return null; //should not happen
+ }
+
+ #endregion //ReferencedInstanceUtils
+ #>
+
+
+
+<#+
+ #region SimpleFilterUtils
+
+  IEnumerable<Filter> getSimpleFilters() //Remember that the class Filter from the PRINGL model is not the same class Filter we output
+ {
+	  return 	from    e in this.IncentiveStrategy.IncentiveElements
+				where	e.GetType() == typeof(Filter)
+				select  (Filter) e;
+ }
+
+ #endregion //SimpleFilterUtils
+#>
+
+<#+
+ #region SimpleActionUtils
+
+  IEnumerable<RewAction> getSimpleActions() //RewAction is the name in metamodel. We will generate just the name Action for use with PRINC's RMod
+ {
+	  return 	from    e in this.IncentiveStrategy.IncentiveElements
+				where	e.GetType() == typeof(RewAction)
+				select  (RewAction) e;
+ }
+
+ #endregion //SimpleActionUtils
+#>
+
+<#+
+ #region CompositeFilterUtils
+
+  IEnumerable<CompositeFilter> getCompositeFilterDefinitions() 
+ {
+	  return 	from    e in this.IncentiveStrategy.IncentiveElements
+				where	e.GetType() == typeof(CompositeFilter)
+				select  (CompositeFilter) e;
+ }
+
+ #endregion //SimpleFilterUtils
+#>
+
+<#+
+ #region CompositeActionUtils
+
+  IEnumerable<CompositeAction> getCompositeActionDefinitions() 
+ {
+	  return 	from    e in this.IncentiveStrategy.IncentiveElements
+				where	e.GetType() == typeof(CompositeAction)
+				select  (CompositeAction) e;
+ }
+
+ #endregion //SimpleFilterUtils
+#>
+
+<#+
+ #region IncMechUtils
+
+ IEnumerable<IncMech> getIncentiveMechanisms() //IncMech is the name in metamodel. We will generate the corresponding class named IncMechanism for use with PRINC's RMod
+ {
+	  return 	from    e in this.IncentiveStrategy.IncentiveElements
+				where	e.GetType() == typeof(IncMech)
+				select  (IncMech) e;
+ }
+
+ #endregion //IncMechUtils
+#>
+
+
+<#+
+ #region CompositeFilterUtils
+ 
+ IEnumerable<CompositeFilter> getCompositeFilters() 
+ {
+	  return 	from    e in this.IncentiveStrategy.IncentiveElements
+				where	e.GetType() == typeof(CompositeFilter)
+				select  (CompositeFilter) e;
+ }
+
+ #endregion //CompositeFilterUtils
+#>
+
+
+
+<#+
+ //CONSTANTS
+ const string COLLECTION_NAME = "IEnumerable";
+ char[] charsToTrim = {','};
+
+ /*DUMMY TYPES TO check design-time compile errors*/
+public class Worker
+{
+
+}
+public class PoiT
+{
+}
+#>
+
+<#+
+
+//DUMMY CLASSES FOR INTELLISENSE CHECKS - DELETE!!!
+
+/*
+public abstract class Filter {
+	public HashSet<Worker> inputWorkers  = new HashSet<Worker>();
+
+	public HashSet<Filter> incoming = new HashSet<Filter>();
+	public HashSet<Filter> outgoing = new HashSet<Filter>();
+
+	//public delegate IEnumerate<PoiT> timeRestriction
+	//public delegate COLLECTION_NAME <PoiT> + " " + l.Name + "(");
+
+	public Filter(HashSet<Worker> inputWorkers)
+	{
+		this.inputWorkers = inputWorkers;
+	}
+
+	public Filter(){}
+
+	protected HashSet<Worker> inputUnionOfWorkers()
+    {
+		HashSet<Worker> allInputWorkers = new HashSet<Worker>(inputWorkers); //add my workers (needed for the first filter in a composite one
+
+		foreach (var inputFilter in this.incoming)
+        {
+			allInputWorkers.UnionWith(inputFilter.output());
+        }
+
+		return allInputWorkers;
+    }
+
+	abstract public HashSet<Worker> output();
+
+} //end base class Filter
+
+public class Passthru : Filter
+{
+
+	public override HashSet<Worker> output()
+	{
+		return inputUnionOfWorkers();
+
+	}
+
+}
+
+*/
+#>

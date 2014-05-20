@@ -1,0 +1,985 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema id="PRINGLSchema" targetNamespace="http://schemas.microsoft.com/dsltools/PRINGL" elementFormDefault="qualified" xmlns="http://schemas.microsoft.com/dsltools/PRINGL" xmlns:core="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:import id="CoreSchema" namespace="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" />
+  <!-- IncentiveStrategy -->
+  <xsd:element name="incentiveStrategy" type="IncentiveStrategy" substitutionGroup="core:modelElement" />
+  <xsd:complexType name="IncentiveStrategy">
+    <xsd:annotation>
+      <xsd:documentation>The root in which all other elements are embedded. Appears as a diagram.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="core:ModelElement">
+        <xsd:sequence minOccurs="0" maxOccurs="1">
+          <!-- Relationship: IncentiveStrategyHasIncentiveElements -->
+          <xsd:element name="incentiveElements" minOccurs="0" maxOccurs="1">
+            <xsd:annotation>
+              <xsd:documentation>Instances of IncentiveStrategyHasIncentiveElements</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element ref="incentiveStrategyHasIncentiveElements" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                    <xsd:documentation>[Instance of IncentiveStrategyHasIncentiveElements needs to be serialized in full-form]</xsd:documentation>
+                  </xsd:annotation>
+                </xsd:element>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+        <!-- Id -->
+        <xsd:attribute name="Id" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Instance Guid of this element, needed because SerializeId is set to true.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <!-- dslVersion -->
+        <xsd:attribute name="dslVersion" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Version of the model serialized in this file.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <!-- Property: StrategyName -->
+        <xsd:attribute name="strategyName" type="xsd:string" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- IncentiveStrategy Moniker -->
+  <xsd:element name="incentiveStrategyMoniker" type="IncentiveStrategyMoniker" substitutionGroup="core:modelElementMoniker" />
+  <xsd:complexType name="IncentiveStrategyMoniker">
+    <xsd:annotation>
+      <xsd:documentation>Moniker for IncentiveStrategy instance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="core:ModelElementMoniker">
+        <xsd:attribute name="Id" type="xsd:string" >
+          <xsd:annotation>
+            <xsd:documentation>Attribute to store the moniker string.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- IncentiveElement -->
+  <xsd:element name="incentiveElement" abstract="true" type="IncentiveElement" substitutionGroup="container" />
+  <xsd:complexType name="IncentiveElement" abstract="true" >
+    <xsd:complexContent>
+      <xsd:extension base="Container">
+        <xsd:sequence minOccurs="0" maxOccurs="1">
+          <!-- Relationship: ElementHasParameters -->
+          <xsd:element name="pRINGLParameter" minOccurs="0" maxOccurs="1">
+            <xsd:annotation>
+              <xsd:documentation>Instances of ElementHasParameters</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element ref="elementHasParameters" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                    <xsd:documentation>[Instance of ElementHasParameters needs to be serialized in full-form]</xsd:documentation>
+                  </xsd:annotation>
+                </xsd:element>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+        <!-- Id -->
+        <xsd:attribute name="Id" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Instance Guid of this element, needed because SerializeId is set to true.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- IncentiveElement Moniker -->
+  <xsd:element name="incentiveElementMoniker" abstract="true" type="IncentiveElementMoniker" substitutionGroup="containerMoniker" />
+  <xsd:complexType name="IncentiveElementMoniker">
+    <xsd:annotation>
+      <xsd:documentation>Moniker for IncentiveElement instance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="ContainerMoniker">
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- SimpleDefinition -->
+  <xsd:element name="simpleDefinition" abstract="true" type="SimpleDefinition" substitutionGroup="pRINGLDefinition" />
+  <xsd:complexType name="SimpleDefinition" abstract="true" >
+    <xsd:complexContent>
+      <xsd:extension base="PRINGLDefinition">
+        <xsd:sequence minOccurs="0" maxOccurs="1">
+          <!-- Relationship: DefinitionReferencesInstance -->
+          <xsd:element name="pRINGLInstance" minOccurs="0" maxOccurs="1">
+            <xsd:annotation>
+              <xsd:documentation>Instances of DefinitionReferencesInstance</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element ref="definitionReferencesInstance" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                    <xsd:documentation>[Instance of DefinitionReferencesInstance needs to be serialized in full-form]</xsd:documentation>
+                  </xsd:annotation>
+                </xsd:element>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+        <!-- Id -->
+        <xsd:attribute name="Id" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Instance Guid of this element, needed because SerializeId is set to true.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- SimpleDefinition Moniker -->
+  <xsd:element name="simpleDefinitionMoniker" abstract="true" type="SimpleDefinitionMoniker" substitutionGroup="pRINGLDefinitionMoniker" />
+  <xsd:complexType name="SimpleDefinitionMoniker">
+    <xsd:annotation>
+      <xsd:documentation>Moniker for SimpleDefinition instance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="PRINGLDefinitionMoniker">
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- CompositeDefinition -->
+  <xsd:element name="compositeDefinition" abstract="true" type="CompositeDefinition" substitutionGroup="pRINGLDefinition" />
+  <xsd:complexType name="CompositeDefinition" abstract="true" >
+    <xsd:complexContent>
+      <xsd:extension base="PRINGLDefinition">
+        <!-- Id -->
+        <xsd:attribute name="Id" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Instance Guid of this element, needed because SerializeId is set to true.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- CompositeDefinition Moniker -->
+  <xsd:element name="compositeDefinitionMoniker" abstract="true" type="CompositeDefinitionMoniker" substitutionGroup="pRINGLDefinitionMoniker" />
+  <xsd:complexType name="CompositeDefinitionMoniker">
+    <xsd:annotation>
+      <xsd:documentation>Moniker for CompositeDefinition instance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="PRINGLDefinitionMoniker">
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- PRINGLDefinition -->
+  <xsd:element name="pRINGLDefinition" abstract="true" type="PRINGLDefinition" substitutionGroup="incentiveElement" />
+  <xsd:complexType name="PRINGLDefinition" abstract="true" >
+    <xsd:complexContent>
+      <xsd:extension base="IncentiveElement">
+        <!-- Id -->
+        <xsd:attribute name="Id" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Instance Guid of this element, needed because SerializeId is set to true.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- PRINGLDefinition Moniker -->
+  <xsd:element name="pRINGLDefinitionMoniker" abstract="true" type="PRINGLDefinitionMoniker" substitutionGroup="incentiveElementMoniker" />
+  <xsd:complexType name="PRINGLDefinitionMoniker">
+    <xsd:annotation>
+      <xsd:documentation>Moniker for PRINGLDefinition instance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="IncentiveElementMoniker">
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- PRINGLInstance -->
+  <xsd:element name="pRINGLInstance" type="PRINGLInstance" substitutionGroup="incentiveElement" />
+  <xsd:complexType name="PRINGLInstance">
+    <xsd:complexContent>
+      <xsd:extension base="IncentiveElement">
+        <!-- Id -->
+        <xsd:attribute name="Id" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Instance Guid of this element, needed because SerializeId is set to true.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <!-- Property: Metatype -->
+        <xsd:attribute name="metatype" type="PRINGLMetatype" />
+        <!-- Property: SubMetatype -->
+        <xsd:attribute name="subMetatype" type="PRINGLSubMetatype" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- PRINGLInstance Moniker -->
+  <xsd:element name="pRINGLInstanceMoniker" type="PRINGLInstanceMoniker" substitutionGroup="incentiveElementMoniker" />
+  <xsd:complexType name="PRINGLInstanceMoniker">
+    <xsd:annotation>
+      <xsd:documentation>Moniker for PRINGLInstance instance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="IncentiveElementMoniker">
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- PRINGLParameter -->
+  <xsd:element name="pRINGLParameter" type="PRINGLParameter" substitutionGroup="core:modelElement" />
+  <xsd:complexType name="PRINGLParameter">
+    <xsd:complexContent>
+      <xsd:extension base="core:ModelElement">
+        <!-- Id -->
+        <xsd:attribute name="Id" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Instance Guid of this element, needed because SerializeId is set to true.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <!-- Property: Type -->
+        <xsd:attribute name="type" type="xsd:string" />
+        <!-- Property: InitialValue -->
+        <xsd:attribute name="initialValue" type="xsd:string" />
+        <!-- Property: Propagation -->
+        <xsd:attribute name="propagation" type="xsd:string" />
+        <!-- Property: Name -->
+        <xsd:attribute name="name" type="xsd:string" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- PRINGLParameter Moniker -->
+  <xsd:element name="pRINGLParameterMoniker" type="PRINGLParameterMoniker" substitutionGroup="core:modelElementMoniker" />
+  <xsd:complexType name="PRINGLParameterMoniker">
+    <xsd:annotation>
+      <xsd:documentation>Moniker for PRINGLParameter instance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="core:ModelElementMoniker">
+        <xsd:attribute name="Id" type="xsd:string" >
+          <xsd:annotation>
+            <xsd:documentation>Attribute to store the moniker string.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- Filter -->
+  <xsd:element name="filter" type="Filter" substitutionGroup="simpleDefinition" />
+  <xsd:complexType name="Filter">
+    <xsd:complexContent>
+      <xsd:extension base="SimpleDefinition">
+        <!-- Id -->
+        <xsd:attribute name="Id" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Instance Guid of this element, needed because SerializeId is set to true.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <!-- Property: time_restr -->
+        <xsd:attribute name="time_restr" type="xsd:string" />
+        <!-- Property: temp_spec -->
+        <xsd:attribute name="temp_spec" type="xsd:string" />
+        <!-- Property: auxiliary -->
+        <xsd:attribute name="auxiliary" type="xsd:string" />
+        <!-- Property: predicate -->
+        <xsd:attribute name="predicate" type="xsd:string" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- Filter Moniker -->
+  <xsd:element name="filterMoniker" type="FilterMoniker" substitutionGroup="simpleDefinitionMoniker" />
+  <xsd:complexType name="FilterMoniker">
+    <xsd:annotation>
+      <xsd:documentation>Moniker for Filter instance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="SimpleDefinitionMoniker">
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- RewAction -->
+  <xsd:element name="rewAction" type="RewAction" substitutionGroup="simpleDefinition" />
+  <xsd:complexType name="RewAction">
+    <xsd:complexContent>
+      <xsd:extension base="SimpleDefinition">
+        <!-- Id -->
+        <xsd:attribute name="Id" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Instance Guid of this element, needed because SerializeId is set to true.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <!-- Property: filter -->
+        <xsd:attribute name="filter" type="xsd:string" />
+        <!-- Property: exec_cond -->
+        <xsd:attribute name="exec_cond" type="xsd:string" />
+        <!-- Property: exec_times -->
+        <xsd:attribute name="exec_times" type="xsd:string" />
+        <!-- Property: temp_spec -->
+        <xsd:attribute name="temp_spec" type="xsd:string" />
+        <!-- Property: action_logic -->
+        <xsd:attribute name="action_logic" type="xsd:string" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- RewAction Moniker -->
+  <xsd:element name="rewActionMoniker" type="RewActionMoniker" substitutionGroup="simpleDefinitionMoniker" />
+  <xsd:complexType name="RewActionMoniker">
+    <xsd:annotation>
+      <xsd:documentation>Moniker for RewAction instance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="SimpleDefinitionMoniker">
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- IncMech -->
+  <xsd:element name="incMech" type="IncMech" substitutionGroup="simpleDefinition" />
+  <xsd:complexType name="IncMech">
+    <xsd:complexContent>
+      <xsd:extension base="SimpleDefinition">
+        <!-- Id -->
+        <xsd:attribute name="Id" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Instance Guid of this element, needed because SerializeId is set to true.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <!-- Property: exec_cond -->
+        <xsd:attribute name="exec_cond" type="xsd:string" />
+        <!-- Property: appl_restr -->
+        <xsd:attribute name="appl_restr" type="xsd:string" />
+        <!-- Property: filter -->
+        <xsd:attribute name="filter" type="xsd:string" />
+        <!-- Property: inc_cond -->
+        <xsd:attribute name="inc_cond" type="xsd:string" />
+        <!-- Property: rew_action -->
+        <xsd:attribute name="rew_action" type="xsd:string" />
+        <!-- Property: prority -->
+        <xsd:attribute name="prority" type="xsd:string" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- IncMech Moniker -->
+  <xsd:element name="incMechMoniker" type="IncMechMoniker" substitutionGroup="simpleDefinitionMoniker" />
+  <xsd:complexType name="IncMechMoniker">
+    <xsd:annotation>
+      <xsd:documentation>Moniker for IncMech instance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="SimpleDefinitionMoniker">
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- IncLogic -->
+  <xsd:element name="incLogic" type="IncLogic" substitutionGroup="simpleDefinition" />
+  <xsd:complexType name="IncLogic">
+    <xsd:complexContent>
+      <xsd:extension base="SimpleDefinition">
+        <!-- Id -->
+        <xsd:attribute name="Id" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Instance Guid of this element, needed because SerializeId is set to true.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <!-- Property: SubMetatype -->
+        <xsd:attribute name="subMetatype" type="PRINGLSubMetatype" />
+        <!-- Property: OutputType -->
+        <xsd:attribute name="outputType" type="xsd:string" />
+        <!-- Property: Code -->
+        <xsd:attribute name="code" type="xsd:string" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- IncLogic Moniker -->
+  <xsd:element name="incLogicMoniker" type="IncLogicMoniker" substitutionGroup="simpleDefinitionMoniker" />
+  <xsd:complexType name="IncLogicMoniker">
+    <xsd:annotation>
+      <xsd:documentation>Moniker for IncLogic instance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="SimpleDefinitionMoniker">
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- CompositeFilter -->
+  <xsd:element name="compositeFilter" type="CompositeFilter" substitutionGroup="compositeDefinition" />
+  <xsd:complexType name="CompositeFilter">
+    <xsd:complexContent>
+      <xsd:extension base="CompositeDefinition">
+        <!-- Id -->
+        <xsd:attribute name="Id" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Instance Guid of this element, needed because SerializeId is set to true.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- CompositeFilter Moniker -->
+  <xsd:element name="compositeFilterMoniker" type="CompositeFilterMoniker" substitutionGroup="compositeDefinitionMoniker" />
+  <xsd:complexType name="CompositeFilterMoniker">
+    <xsd:annotation>
+      <xsd:documentation>Moniker for CompositeFilter instance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="CompositeDefinitionMoniker">
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- CompositeAction -->
+  <xsd:element name="compositeAction" type="CompositeAction" substitutionGroup="compositeDefinition" />
+  <xsd:complexType name="CompositeAction">
+    <xsd:complexContent>
+      <xsd:extension base="CompositeDefinition">
+        <!-- Id -->
+        <xsd:attribute name="Id" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Instance Guid of this element, needed because SerializeId is set to true.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- CompositeAction Moniker -->
+  <xsd:element name="compositeActionMoniker" type="CompositeActionMoniker" substitutionGroup="compositeDefinitionMoniker" />
+  <xsd:complexType name="CompositeActionMoniker">
+    <xsd:annotation>
+      <xsd:documentation>Moniker for CompositeAction instance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="CompositeDefinitionMoniker">
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- Container -->
+  <xsd:element name="container" abstract="true" type="Container" substitutionGroup="core:modelElement" />
+  <xsd:complexType name="Container" abstract="true" >
+    <xsd:complexContent>
+      <xsd:extension base="core:ModelElement">
+        <xsd:sequence minOccurs="0" maxOccurs="1">
+          <!-- Relationship: ContainerHasInnerFilterInstances -->
+          <xsd:element name="innerFilterInstances" minOccurs="0" maxOccurs="1">
+            <xsd:annotation>
+              <xsd:documentation>Instances of ContainerHasInnerFilterInstances</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element ref="containerHasInnerFilterInstances" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                    <xsd:documentation>[Instance of ContainerHasInnerFilterInstances needs to be serialized in full-form]</xsd:documentation>
+                  </xsd:annotation>
+                </xsd:element>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+          <!-- Relationship: ContainerHasInnerActionInstances -->
+          <xsd:element name="innerActionInstances" minOccurs="0" maxOccurs="1">
+            <xsd:annotation>
+              <xsd:documentation>Instances of ContainerHasInnerActionInstances</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element ref="containerHasInnerActionInstances" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                    <xsd:documentation>[Instance of ContainerHasInnerActionInstances needs to be serialized in full-form]</xsd:documentation>
+                  </xsd:annotation>
+                </xsd:element>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+        <!-- Id -->
+        <xsd:attribute name="Id" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Instance Guid of this element, needed because SerializeId is set to true.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <!-- Property: Name -->
+        <xsd:attribute name="name" type="xsd:string" use="required" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- Container Moniker -->
+  <xsd:element name="containerMoniker" abstract="true" type="ContainerMoniker" substitutionGroup="core:modelElementMoniker" />
+  <xsd:complexType name="ContainerMoniker">
+    <xsd:annotation>
+      <xsd:documentation>Moniker for Container instance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="core:ModelElementMoniker">
+        <xsd:attribute name="name" type="xsd:string" >
+          <xsd:annotation>
+            <xsd:documentation>Attribute to store the moniker string.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- InnerFilterInstance -->
+  <xsd:element name="innerFilterInstance" type="InnerFilterInstance" substitutionGroup="container" />
+  <xsd:complexType name="InnerFilterInstance">
+    <xsd:complexContent>
+      <xsd:extension base="Container">
+        <xsd:sequence minOccurs="0" maxOccurs="1">
+          <!-- Relationship: InnerFilterFlow -->
+          <xsd:element name="filterFlowTo" minOccurs="0" maxOccurs="1">
+            <xsd:annotation>
+              <xsd:documentation>Instances of InnerFilterFlow</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element ref="innerFilterFlow" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                    <xsd:documentation>[Instance of InnerFilterFlow needs to be serialized in full-form]</xsd:documentation>
+                  </xsd:annotation>
+                </xsd:element>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+        <!-- Id -->
+        <xsd:attribute name="Id" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Instance Guid of this element, needed because SerializeId is set to true.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <!-- Property: Position -->
+        <xsd:attribute name="position" type="InnerShapeFlowPosition" />
+        <!-- Property: Type -->
+        <xsd:attribute name="type" type="xsd:string" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- InnerFilterInstance Moniker -->
+  <xsd:element name="innerFilterInstanceMoniker" type="InnerFilterInstanceMoniker" substitutionGroup="containerMoniker" />
+  <xsd:complexType name="InnerFilterInstanceMoniker">
+    <xsd:annotation>
+      <xsd:documentation>Moniker for InnerFilterInstance instance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="ContainerMoniker">
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- InnerActionInstance -->
+  <xsd:element name="innerActionInstance" type="InnerActionInstance" substitutionGroup="container" />
+  <xsd:complexType name="InnerActionInstance">
+    <xsd:complexContent>
+      <xsd:extension base="Container">
+        <xsd:sequence minOccurs="0" maxOccurs="1">
+          <!-- Relationship: InnerActionFlow -->
+          <xsd:element name="actionFlowTo" minOccurs="0" maxOccurs="1">
+            <xsd:annotation>
+              <xsd:documentation>Instances of InnerActionFlow</xsd:documentation>
+            </xsd:annotation>
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element ref="innerActionFlow" minOccurs="0" maxOccurs="unbounded">
+                  <xsd:annotation>
+                    <xsd:documentation>[Instance of InnerActionFlow needs to be serialized in full-form]</xsd:documentation>
+                  </xsd:annotation>
+                </xsd:element>
+              </xsd:sequence>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:sequence>
+        <!-- Id -->
+        <xsd:attribute name="Id" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Instance Guid of this element, needed because SerializeId is set to true.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <!-- Property: Position -->
+        <xsd:attribute name="position" type="InnerShapeFlowPosition" />
+        <!-- Property: Type -->
+        <xsd:attribute name="type" type="xsd:string" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- InnerActionInstance Moniker -->
+  <xsd:element name="innerActionInstanceMoniker" type="InnerActionInstanceMoniker" substitutionGroup="containerMoniker" />
+  <xsd:complexType name="InnerActionInstanceMoniker">
+    <xsd:annotation>
+      <xsd:documentation>Moniker for InnerActionInstance instance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="ContainerMoniker">
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- IncMechInstance -->
+  <xsd:element name="incMechInstance" type="IncMechInstance" substitutionGroup="incentiveElement" />
+  <xsd:complexType name="IncMechInstance">
+    <xsd:complexContent>
+      <xsd:extension base="IncentiveElement">
+        <!-- Id -->
+        <xsd:attribute name="Id" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Instance Guid of this element, needed because SerializeId is set to true.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <!-- Property: priority -->
+        <xsd:attribute name="priority" type="xsd:string" />
+        <!-- Property: Type -->
+        <xsd:attribute name="type" type="xsd:string" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- IncMechInstance Moniker -->
+  <xsd:element name="incMechInstanceMoniker" type="IncMechInstanceMoniker" substitutionGroup="incentiveElementMoniker" />
+  <xsd:complexType name="IncMechInstanceMoniker">
+    <xsd:annotation>
+      <xsd:documentation>Moniker for IncMechInstance instance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="IncentiveElementMoniker">
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- IncentiveStrategyHasIncentiveElements -->
+  <xsd:element name="incentiveStrategyHasIncentiveElements" type="IncentiveStrategyHasIncentiveElements" substitutionGroup="core:modelElement" />
+  <xsd:complexType name="IncentiveStrategyHasIncentiveElements">
+    <xsd:complexContent>
+      <xsd:extension base="core:ModelElement">
+        <xsd:sequence minOccurs="0" maxOccurs="1">
+          <!-- Target end IncentiveElement -->
+          <xsd:element ref="incentiveElement" minOccurs="1" maxOccurs="1">
+            <xsd:annotation>
+              <xsd:documentation>[Target role-player]</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+        <!-- Id -->
+        <xsd:attribute name="Id" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Instance Guid of this element, needed because SerializeId is set to true.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- IncentiveStrategyHasIncentiveElements Moniker -->
+  <xsd:element name="incentiveStrategyHasIncentiveElementsMoniker" type="IncentiveStrategyHasIncentiveElementsMoniker" substitutionGroup="core:modelElementMoniker" />
+  <xsd:complexType name="IncentiveStrategyHasIncentiveElementsMoniker">
+    <xsd:annotation>
+      <xsd:documentation>Moniker for IncentiveStrategyHasIncentiveElements instance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="core:ModelElementMoniker">
+        <xsd:attribute name="Id" type="xsd:string" >
+          <xsd:annotation>
+            <xsd:documentation>Attribute to store the moniker string.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- ElementHasParameters -->
+  <xsd:element name="elementHasParameters" type="ElementHasParameters" substitutionGroup="core:modelElement" />
+  <xsd:complexType name="ElementHasParameters">
+    <xsd:complexContent>
+      <xsd:extension base="core:ModelElement">
+        <xsd:sequence minOccurs="0" maxOccurs="1">
+          <!-- Target end PRINGLParameter -->
+          <xsd:element ref="pRINGLParameter" minOccurs="1" maxOccurs="1">
+            <xsd:annotation>
+              <xsd:documentation>[Target role-player]</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+        <!-- Id -->
+        <xsd:attribute name="Id" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Instance Guid of this element, needed because SerializeId is set to true.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- ElementHasParameters Moniker -->
+  <xsd:element name="elementHasParametersMoniker" type="ElementHasParametersMoniker" substitutionGroup="core:modelElementMoniker" />
+  <xsd:complexType name="ElementHasParametersMoniker">
+    <xsd:annotation>
+      <xsd:documentation>Moniker for ElementHasParameters instance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="core:ModelElementMoniker">
+        <xsd:attribute name="Id" type="xsd:string" >
+          <xsd:annotation>
+            <xsd:documentation>Attribute to store the moniker string.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- DefinitionReferencesInstance -->
+  <xsd:element name="definitionReferencesInstance" type="DefinitionReferencesInstance" substitutionGroup="core:modelElement" />
+  <xsd:complexType name="DefinitionReferencesInstance">
+    <xsd:complexContent>
+      <xsd:extension base="core:ModelElement">
+        <xsd:sequence minOccurs="0" maxOccurs="1">
+          <!-- Target end PRINGLInstance -->
+          <xsd:element ref="pRINGLInstanceMoniker" minOccurs="1" maxOccurs="1">
+            <xsd:annotation>
+              <xsd:documentation>[Target role-player]</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+        <!-- Id -->
+        <xsd:attribute name="Id" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Instance Guid of this element, needed because SerializeId is set to true.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- DefinitionReferencesInstance Moniker -->
+  <xsd:element name="definitionReferencesInstanceMoniker" type="DefinitionReferencesInstanceMoniker" substitutionGroup="core:modelElementMoniker" />
+  <xsd:complexType name="DefinitionReferencesInstanceMoniker">
+    <xsd:annotation>
+      <xsd:documentation>Moniker for DefinitionReferencesInstance instance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="core:ModelElementMoniker">
+        <xsd:attribute name="Id" type="xsd:string" >
+          <xsd:annotation>
+            <xsd:documentation>Attribute to store the moniker string.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- ContainerHasInnerFilterInstances -->
+  <xsd:element name="containerHasInnerFilterInstances" type="ContainerHasInnerFilterInstances" substitutionGroup="core:modelElement" />
+  <xsd:complexType name="ContainerHasInnerFilterInstances">
+    <xsd:complexContent>
+      <xsd:extension base="core:ModelElement">
+        <xsd:sequence minOccurs="0" maxOccurs="1">
+          <!-- Target end InnerFilterInstance -->
+          <xsd:element ref="innerFilterInstance" minOccurs="1" maxOccurs="1">
+            <xsd:annotation>
+              <xsd:documentation>[Target role-player]</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+        <!-- Id -->
+        <xsd:attribute name="Id" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Instance Guid of this element, needed because SerializeId is set to true.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- ContainerHasInnerFilterInstances Moniker -->
+  <xsd:element name="containerHasInnerFilterInstancesMoniker" type="ContainerHasInnerFilterInstancesMoniker" substitutionGroup="core:modelElementMoniker" />
+  <xsd:complexType name="ContainerHasInnerFilterInstancesMoniker">
+    <xsd:annotation>
+      <xsd:documentation>Moniker for ContainerHasInnerFilterInstances instance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="core:ModelElementMoniker">
+        <xsd:attribute name="Id" type="xsd:string" >
+          <xsd:annotation>
+            <xsd:documentation>Attribute to store the moniker string.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- ContainerHasInnerActionInstances -->
+  <xsd:element name="containerHasInnerActionInstances" type="ContainerHasInnerActionInstances" substitutionGroup="core:modelElement" />
+  <xsd:complexType name="ContainerHasInnerActionInstances">
+    <xsd:complexContent>
+      <xsd:extension base="core:ModelElement">
+        <xsd:sequence minOccurs="0" maxOccurs="1">
+          <!-- Target end InnerActionInstance -->
+          <xsd:element ref="innerActionInstance" minOccurs="1" maxOccurs="1">
+            <xsd:annotation>
+              <xsd:documentation>[Target role-player]</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+        <!-- Id -->
+        <xsd:attribute name="Id" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Instance Guid of this element, needed because SerializeId is set to true.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- ContainerHasInnerActionInstances Moniker -->
+  <xsd:element name="containerHasInnerActionInstancesMoniker" type="ContainerHasInnerActionInstancesMoniker" substitutionGroup="core:modelElementMoniker" />
+  <xsd:complexType name="ContainerHasInnerActionInstancesMoniker">
+    <xsd:annotation>
+      <xsd:documentation>Moniker for ContainerHasInnerActionInstances instance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="core:ModelElementMoniker">
+        <xsd:attribute name="Id" type="xsd:string" >
+          <xsd:annotation>
+            <xsd:documentation>Attribute to store the moniker string.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- InnerFilterFlow -->
+  <xsd:element name="innerFilterFlow" type="InnerFilterFlow" substitutionGroup="core:modelElement" />
+  <xsd:complexType name="InnerFilterFlow">
+    <xsd:complexContent>
+      <xsd:extension base="core:ModelElement">
+        <xsd:sequence minOccurs="0" maxOccurs="1">
+          <!-- Target end InnerFilterInstance -->
+          <xsd:element ref="innerFilterInstanceMoniker" minOccurs="1" maxOccurs="1">
+            <xsd:annotation>
+              <xsd:documentation>[Target role-player]</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+        <!-- Id -->
+        <xsd:attribute name="Id" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Instance Guid of this element, needed because SerializeId is set to true.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <!-- Property: IsComplemented -->
+        <xsd:attribute name="isComplemented" type="xsd:boolean" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- InnerFilterFlow Moniker -->
+  <xsd:element name="innerFilterFlowMoniker" type="InnerFilterFlowMoniker" substitutionGroup="core:modelElementMoniker" />
+  <xsd:complexType name="InnerFilterFlowMoniker">
+    <xsd:annotation>
+      <xsd:documentation>Moniker for InnerFilterFlow instance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="core:ModelElementMoniker">
+        <xsd:attribute name="Id" type="xsd:string" >
+          <xsd:annotation>
+            <xsd:documentation>Attribute to store the moniker string.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- InnerActionFlow -->
+  <xsd:element name="innerActionFlow" type="InnerActionFlow" substitutionGroup="core:modelElement" />
+  <xsd:complexType name="InnerActionFlow">
+    <xsd:complexContent>
+      <xsd:extension base="core:ModelElement">
+        <xsd:sequence minOccurs="0" maxOccurs="1">
+          <!-- Target end InnerActionInstance -->
+          <xsd:element ref="innerActionInstanceMoniker" minOccurs="1" maxOccurs="1">
+            <xsd:annotation>
+              <xsd:documentation>[Target role-player]</xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+        <!-- Id -->
+        <xsd:attribute name="Id" type="xsd:string">
+          <xsd:annotation>
+            <xsd:documentation>Instance Guid of this element, needed because SerializeId is set to true.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <!-- Property: IsComplemented -->
+        <xsd:attribute name="isComplemented" type="xsd:boolean" />
+        <!-- Property: Delay -->
+        <xsd:attribute name="delay" type="xsd:integer" />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- InnerActionFlow Moniker -->
+  <xsd:element name="innerActionFlowMoniker" type="InnerActionFlowMoniker" substitutionGroup="core:modelElementMoniker" />
+  <xsd:complexType name="InnerActionFlowMoniker">
+    <xsd:annotation>
+      <xsd:documentation>Moniker for InnerActionFlow instance.</xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="core:ModelElementMoniker">
+        <xsd:attribute name="Id" type="xsd:string" >
+          <xsd:annotation>
+            <xsd:documentation>Attribute to store the moniker string.</xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+  
+  <!-- Enum PRINGLSubMetatype -->
+  <xsd:simpleType name="PRINGLSubMetatype">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="TimeLogic"/>
+      <xsd:enumeration value="StructureLogic"/>
+      <xsd:enumeration value="PredicateLogic"/>
+      <xsd:enumeration value="FilterLogic"/>
+      <xsd:enumeration value="ActionLogic"/>
+      <xsd:enumeration value="None"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+  <!-- Enum InnerShapeFlowPosition -->
+  <xsd:simpleType name="InnerShapeFlowPosition">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Initial"/>
+      <xsd:enumeration value="Final"/>
+      <xsd:enumeration value="Normal"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+  <!-- Enum PRINGLMetatype -->
+  <xsd:simpleType name="PRINGLMetatype">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="Filter"/>
+      <xsd:enumeration value="Action"/>
+      <xsd:enumeration value="Logic"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  
+</xsd:schema>
+

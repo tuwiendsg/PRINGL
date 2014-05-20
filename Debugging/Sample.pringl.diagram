@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<pRINGLDiagram dslVersion="1.0.0.0" Id="3742fe46-af9a-4266-8d02-e1dfae74421b" absoluteBounds="0, 0, 13.125, 8.5" name="Sample">
+  <incentiveStrategyMoniker Id="594b10a6-7cfb-496a-8f1a-dbbd3478aaf5" />
+  <nestedChildShapes>
+    <compositeFilterShape Id="87e10bf8-ea40-46d2-bd1c-1c232ded2a71" absoluteBounds="1.75, 2.875, 6.25, 1.875" fillColor="White" fillGradientMode="Horizontal">
+      <compositeFilterMoniker name="/594b10a6-7cfb-496a-8f1a-dbbd3478aaf5/VelikiFilter" />
+      <nestedChildShapes>
+        <innerFilterShape Id="d7bd1c89-9580-4b18-8e17-65874945f783" absoluteBounds="2.125, 3.375, 1.5, 0.5">
+          <innerFilterInstanceMoniker name="/594b10a6-7cfb-496a-8f1a-dbbd3478aaf5/VelikiFilter/MaliFilter1" />
+          <relativeChildShapes />
+        </innerFilterShape>
+        <innerFilterShape Id="31abf3fb-5c2b-4815-a402-c2250b6bb09f" absoluteBounds="5.5, 3.625, 1.5, 0.5">
+          <innerFilterInstanceMoniker name="/594b10a6-7cfb-496a-8f1a-dbbd3478aaf5/VelikiFilter/MaliFilter2" />
+          <relativeChildShapes />
+        </innerFilterShape>
+      </nestedChildShapes>
+    </compositeFilterShape>
+    <compositeFilterShape Id="e7fd8d26-c060-485f-b587-c57ebddf0c20" absoluteBounds="2.5, 0.625, 1.5, 1" fillColor="White" fillGradientMode="Horizontal">
+      <compositeFilterMoniker name="/594b10a6-7cfb-496a-8f1a-dbbd3478aaf5/DrugiCompozitniFilter" />
+    </compositeFilterShape>
+    <compositeActionShape Id="b263d9de-5353-4d5c-a643-938e247f8a6f" absoluteBounds="5.375, 0.5, 1.5, 1" fillColor="White" fillGradientMode="Horizontal">
+      <compositeActionMoniker name="/594b10a6-7cfb-496a-8f1a-dbbd3478aaf5/CompositeAction1" />
+    </compositeActionShape>
+    <incMechShape Id="07958e26-d5a1-47bd-a49f-1dcf52c624bd" absoluteBounds="4.75, 5.5, 1.5, 1.4818058268229164">
+      <incMechMoniker name="/594b10a6-7cfb-496a-8f1a-dbbd3478aaf5/IncMech1" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ad66c096-23d9-406c-ab81-d669874e76cd" absoluteBounds="4.765, 6.51, 1.4700000000000002, 0.37180582682291663" name="Params" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </incMechShape>
+    <incMechInstanceShape Id="78dae8d3-f59e-4310-85e8-202b31ee907f" absoluteBounds="11.375, 4.875, 1.5, 1.3174584960937494">
+      <incMechInstanceMoniker name="/594b10a6-7cfb-496a-8f1a-dbbd3478aaf5/i1" />
+      <nestedChildShapes>
+        <elementListCompartment Id="47cadc01-3cbf-4638-b005-d333bf1325fa" absoluteBounds="11.39, 5.885, 1.4700000000000002, 0.20745849609375" name="Params" titleTextColor="White" itemTextColor="White" />
+      </nestedChildShapes>
+    </incMechInstanceShape>
+  </nestedChildShapes>
+</pRINGLDiagram>
